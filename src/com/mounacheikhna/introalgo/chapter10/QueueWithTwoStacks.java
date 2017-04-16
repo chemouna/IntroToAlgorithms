@@ -15,18 +15,22 @@ public class QueueWithTwoStacks<T> {
         backStack = new LinkedStack<T>();
     }
 
+    //O(1)
     public int size() {
         return frontStack.size() + backStack.size();
     }
 
+    //O(1)
     public boolean isEmpty() {
         return frontStack.isEmpty() && backStack.isEmpty();
     }
 
+    //O(1)
     public void enqueue(T item) {
         frontStack.push(item);
     }
 
+    //Amortized O(1) (occasional O(N))
     public T dequeue() {
         if (backStack.isEmpty()) throw new NoSuchElementException();
         if (backStack.isEmpty()) moveFrontToBack();
