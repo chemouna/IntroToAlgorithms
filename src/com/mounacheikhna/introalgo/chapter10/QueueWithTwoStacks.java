@@ -1,19 +1,42 @@
 package com.mounacheikhna.introalgo.chapter10;
 
+import java.util.NoSuchElementException;
+
 /**
  * Created by m.cheikhna on 15/04/2017.
  */
-public class QueueWithTwoStacks<Item> {
+public class QueueWithTwoStacks<T> {
 
-    private Stack<Item> frontStack;
-    private Stack<Item> backStack;
+    private LinkedStack<T> frontStack;
+    private LinkedStack<T> backStack;
 
     public QueueWithTwoStacks() {
-        frontStack = new Stack<Item>();
-        backStack = new Stack<Item>();
+        frontStack = new LinkedStack<T>();
+        backStack = new LinkedStack<T>();
     }
 
-    public  int size() {
-        return frontStack.
+    public int size() {
+        return frontStack.size() + backStack.size();
     }
+
+    public boolean isEmpty() {
+        return frontStack.isEmpty() && backStack.isEmpty();
+    }
+
+    public void enqueue(T item) {
+        frontStack.push(item);
+    }
+
+    public T dequeue() {
+        if (backStack.isEmpty()) throw new NoSuchElementException();
+        if (backStack.isEmpty()) moveFrontToBack();
+        return backStack.pop();
+    }
+
+    private void moveFrontToBack() {
+        while (!frontStack.isEmpty()) {
+            backStack.push(frontStack.pop());
+        }
+    }
+
 }
