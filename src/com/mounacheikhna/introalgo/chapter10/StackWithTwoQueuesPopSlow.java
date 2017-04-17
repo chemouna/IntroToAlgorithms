@@ -23,7 +23,11 @@ public class StackWithTwoQueuesPopSlow<T> {
         while (q1.size() > 1) {
             q2.enqueue(q1.dequeue());
         }
-        return q1.dequeue();
+        final T item = q1.dequeue();
+        Queue<T> temp = q1;
+        q1 = q2;
+        q2 = temp;
+        return item;
     }
 
     public boolean isEmpty() {
