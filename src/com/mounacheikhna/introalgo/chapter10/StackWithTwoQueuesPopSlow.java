@@ -14,10 +14,12 @@ public class StackWithTwoQueuesPopSlow<T> {
         q2 = new Queue<>();
     }
 
+    //O(1)
     public void push(T item) {
         q1.enqueue(item);
     }
 
+    // O(n)
     public T pop() {
         if(q1.isEmpty()) throw new NoSuchElementException();
         while (q1.size() > 1) {

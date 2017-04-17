@@ -15,6 +15,7 @@ public class StackWithTwoQueuesPushSlow<T> {
         q2 = new Queue<>();
     }
 
+    //O(n)
     public void push(T item) {
         q2.enqueue(item);
         while (!q1.isEmpty()) {
@@ -25,6 +26,7 @@ public class StackWithTwoQueuesPushSlow<T> {
         q2 = temp;
     }
 
+    //O(1)
     public T pop() {
         if (q1.isEmpty()) throw new NoSuchElementException();
         return q1.dequeue();
